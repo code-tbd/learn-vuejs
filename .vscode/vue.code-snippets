@@ -21,7 +21,9 @@
 			
 			"<body>",
 			
-			"\t<div id=\"app\">{{massage}}</div>",
+			"\t<div id=\"app\">",
+			"\t\t<h2>{{massage}}</h2>",
+			"\t</div>",
 			
 			"\t<script src=\"../js/vue.js\"></script>",
 			"\t<script>",
