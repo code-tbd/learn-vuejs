@@ -8,15 +8,25 @@
 </head>
 <body>
     <div id="app">
-        <h2>{{message}}</h2>
-        <h2 v-text='message'></h2>
+        <h2 class="title" :class="[active,line]">{{message}}</h2>
+        <h2 class="title" :class="[active,line]">{{message}}</h2>
     </div>
     <script src="../js/vue.js"></script>
     <script>
         const app = new Vue({
             el: '#app',
             data: {
-                message: '你好'
+                message: '你好',
+                active:'aaa',
+                line:'bbb'
+            },
+            methods: {
+                getClasses: function(){
+                    return [
+                        this.active,
+                        this.line
+                    ]
+                }
             }
         })
     </script>

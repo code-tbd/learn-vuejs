@@ -8,15 +8,17 @@
 </head>
 <body>
     <div id="app">
-        <h2>{{message}}</h2>
-        <h2 v-text='message'></h2>
+        <img :src="imgUrl" alt="">
+        <a :href="aHref">百度一下</a>
     </div>
     <script src="../js/vue.js"></script>
     <script>
         const app = new Vue({
             el: '#app',
             data: {
-                message: '你好'
+                message: '你好',
+                imgUrl:'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fa3.att.hudong.com%2F61%2F98%2F01300000248068123885985729957.jpg&refer=http%3A%2F%2Fa3.att.hudong.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1620442606&t=bdade7cabfc9074178c005c274b4c3ed',
+                aHref:'http://www.baidu.com'
             }
         })
     </script>
