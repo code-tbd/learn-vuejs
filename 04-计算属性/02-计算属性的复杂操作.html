@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h2>{{totalPrice}}</h2>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: '你好',
+                books:[
+                    {id:'001',name:'浪潮之巅',price:100},
+                    {id:'002',name:'JS从出生到入土',price:80},
+                    {id:'003',name:'小猪佩奇',price:30},
+                ]
+            },
+            computed: {
+                totalPrice() {
+                    let result = 0;
+                    // this.books.forEach(book => {
+                    //     result += book.price
+                    // });
+                    for(let book of this.books){
+                        result += book.price
+                    }
+                    return result;
+                }
+            }
+        })
+    </script>
+</body>
+</html>
