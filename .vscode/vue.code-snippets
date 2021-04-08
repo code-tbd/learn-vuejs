@@ -22,7 +22,7 @@
 			"<body>",
 			
 			"\t<div id=\"app\">",
-			"\t\t<h2>{{massage}}</h2>",
+			"\t\t<h2>{{message}}</h2>",
 			"\t</div>",
 			
 			"\t<script src=\"../js/vue.js\"></script>",
@@ -30,7 +30,7 @@
 			"\t\tconst app = new Vue({",
 			"\t\t\tel: '#app',",
 			"\t\t\tdata: {",
-			"\t\t\t\tmassage: '你好'",
+			"\t\t\t\tmessage: '你好'",
 			"\t\t\t}",
 			"\t\t})",
 			"\t</script>",
