@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <button @click="btnClick">按键</button>
+    <ul>
+      <li v-for="item in letters">{{item}}</li>
+    </ul>
+  </div>
+  <script src="../js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: '你好',
+        letters: ['a','b','d','c','e']
+      },
+      methods: {
+        btnClick() {
+          // 响应式方法
+          // 1.push()在末尾插入,可以同时插入多个
+          // this.letters.push('aaa')
+          // this.letters.push('aaa','bbb','ccc')
+
+          // 2.pop()在末尾弹出
+          // this.letters.pop()
+
+          // 3.unshift()在开头插入,可以同时插入多个
+          // this.letters.unshift('aaa','bbb','ccc')
+
+          // 4.shift()在开头弹出
+          // this.letters.shift()
+
+          // 5.splice( 指定位置，第n个数的尾部 | 往后删除的个数 | 在该位置插入的元素...)
+          // this.letters.splice(1,0,'1','2','2')
+
+          // 6.sort()
+          // this.letters.sort()
+
+          // 7.reverse()
+          // this.letters.reverse()
+
+          // 8.Vue.set( 修改的对象 | 索引值 | 修改后的值 )
+          Vue.set(this.letters,0,1)
+
+
+
+          // 注意!!!
+          // 非响应式方法
+          // this.letters[0] = 'haha'
+
+
+        }
+      }
+    })
+  </script>
+</body>
+</html>

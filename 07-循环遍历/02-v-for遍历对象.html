@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <!-- 获取键值 -->
+    <ul>
+      <li v-for="item in person">{{item}}</li>
+    </ul>
+
+
+    <!-- 获取键值和键名 -->
+    <ul>
+      <li v-for="(item,key) in person">{{key}}:{{item}}</li>
+      <li v-for="(item,k) in person">{{k}}:{{item}}</li>
+    </ul>
+
+
+    <!-- 获取键值键名和索引号 -->
+    <ul>
+      <li v-for="(item,key,index) in person">{{index}}{{key}}:{{item}}</li>
+      <li v-for="(item,key,i) in person">{{i}}{{key}}:{{item}}</li>
+    </ul>
+
+    <!-- 参数按照顺序依次是：键值、键名、索引号 -->
+  </div>
+  <script src="../js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: '你好',
+        person: {
+          name: 'WhiteStar',
+          age: 18,
+          height: 188
+        }
+      }
+    })
+  </script>
+</body>
+</html>

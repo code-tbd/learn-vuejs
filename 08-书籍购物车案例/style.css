@@ -1,0 +1,26 @@
+h2 {
+  text-align: center;
+}
+
+.noBook{
+  border: 1px black solid;
+  margin: 0 auto;
+  width: 420px;
+  line-height: 206px;
+  text-align: center;
+}
+
+thead {
+  background-color: rgb(230, 230, 230);
+}
+
+table,th,td{
+  border: 1px black solid;
+  border-collapse: collapse;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+#total{
+  text-align: center;
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <!-- v-bind绑定value实现更改vue中data来改变dom中显示的内容 -->
+    <!-- v-on监听input实现dom中输入发生变化来改变vue中data的数据 -->
+
+    <!-- 调用方法 -->
+    <input type="text" :value="message" @input="valueChange">
+    <!-- 直接操作 -->
+    <input type="text" :value="message" @input="message = $event.target.value">
+    <h2>{{message}}</h2>
+  </div>
+  <script src="../js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: '你好'
+      },
+      methods: {
+        valueChange(e) {
+          // 事件.target.value可以获得当前事件对象的value值
+          this.message = e.target.value
+        }
+      }
+    })
+  </script>
+</body>
+</html>

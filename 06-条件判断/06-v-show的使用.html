@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <!-- v-if为flase整个元素不会出现在dom里 -->
+    <h2 v-if="isShow">{{message}}</h2>
+
+
+    <!-- v-show为false只是改变元素的display:none -->
+    <h2 v-show="isShow">{{message}}</h2>
+
+
+    <!-- 频繁切换显示时使用v-show，只切换一次时使用v-if，特别是渲染一大块元素时 -->
+  </div>
+  <script src="../js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: '你好',
+        isShow: true
+      }
+    })
+  </script>
+</body>
+</html>

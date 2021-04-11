@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 1.没有传入参数 -->
+    <button @click="btn1">按钮1</button>
+    <button @click="btn1()">按钮1</button>
+
+
+    <!-- 2.传入e -->
+    <button @click="btn2">按钮2</button>
+    <!-- 只传事件对象时不可以带小括号 -->
+    <button @click="btn2()">按钮2</button>
+    <button @click="btn2($event)">按钮2</button>
+    <!-- 只允许使用$event -->
+    <button @click="btn2($e)">按钮2</button>
+
+
+    <!-- 3.传入参数 -->
+    <!-- 省略参数时默认传入事件对象 -->
+    <button @click="btn3">按钮3</button>
+    <!-- 传入空时参数为undefined -->
+    <button @click="btn3()">按钮3</button>
+    <button @click="btn3(123)">按钮3</button>
+    <button @click="btn3($event)">按钮3</button>
+
+
+    <!-- 4.传入参数和e -->
+    <button @click="btn4($event)">按钮4</button>       e un
+    <button @click="btn4(123)">按钮4</button>          123 un
+    <button @click="btn4()">按钮4</button>             un un
+    <button @click="btn4">按钮4</button>               e un
+    <button @click="btn4(123,$event)">按钮4</button>   123 e
+    <button @click="btn4($event,123)">按钮4</button>   e 123
+  </div>
+  <script src="../js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: '你好'
+      },
+      methods: {
+        btn1() {
+          console.log('按下1');
+        },
+        btn2(e) {
+          console.log(e);
+        },
+        btn3(num) {
+          console.log(num);
+        },
+        // 默认第一个参数为事件对象参数
+        btn4(e,counter) {
+          console.log(e);
+          console.log(counter);
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

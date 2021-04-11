@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <!-- 第一个参数数组值，第二个参数数组索引号 -->
+    <ul>
+      <li v-for="(n,index) in name">{{index+1}}-{{n}}</li>
+    </ul>
+    <ul>
+      <li v-for="(n,i) in name">{{i+1}}-{{n}}</li>
+    </ul>
+    <ul>
+      <li v-for="(i,n) in name">{{i+1}}-{{n}}</li>
+    </ul>
+  </div>
+  <script src="../js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: '你好',
+        name: ['WhiteStar','XiaZiMian','ttb']
+      }
+    })
+  </script>
+</body>
+</html>

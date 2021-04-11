@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <div id="app">
+    <h2>书籍购物车</h2>
+
+    <table v-if="haveBook">
+      <thead>
+        <tr>
+          <th></th>
+          <th>书籍名称</th>
+          <th>出版日期</th>
+          <th>价格</th>
+          <th>购买数量</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(item,index) in books">
+          <td>{{index+1}}</td>
+          <!-- 使用了过滤器 -->
+          <td>{{item.name|finalName}}</td>
+          <td>{{item.date}}</td>
+          <td>{{item.price|finalPrice}}</td>
+          <td>
+            <button @click="decrement(index)" :disabled="item.count==1">-</button>
+            <span>{{item.count}}</span>
+            <button @click="increment(item)">+</button>
+          </td>
+          <td>
+            <button @click="remove(index)">移除</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div v-else class="noBook">
+      您的购物车中没有书籍
+    </div>
+
+    <div id="total">总价：{{totalPrice|finalPrice}}</div>
+  </div>
+
+
+
+
+
+  <script src="../js/vue.js"></script>
+  <script src="./main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    
+    <label v-for="item in originFruits">
+      <input type="checkbox" v-model="fruits" :value="item">{{item}}
+    </label>
+    <h2>您选择的水果是：{{fruits}}</h2>
+
+
+  </div>
+  <script src="../js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        // 从服务器获取的可选数组，值绑定指把这些循环绑定到dom中
+        originFruits: ['苹果','香蕉','榴莲','橘子','猕猴桃'],
+        fruits: []
+      }
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <!-- 单选checkbox -->
+    <!-- 同意协议等场景中容易用到 -->
+    <label>
+      <input type="checkbox" v-model="isAgree">同意协议
+    </label>
+    <br>
+    <button :disabled="!isAgree">提交</button>
+
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <!-- 多选checkbox -->
+    <!-- 选择爱好 -->
+    <label>
+      <input type="checkbox" v-model="hobbies" value="足球">足球
+    </label>
+    <label>
+      <input type="checkbox" v-model="hobbies" value="篮球">篮球
+    </label>
+    <label>
+      <input type="checkbox" v-model="hobbies" value="排球">排球
+    </label>
+    <label>
+      <input type="checkbox" v-model="hobbies" value="网球">网球
+    </label>
+    <h2>您的爱好是：{{hobbies}}</h2>
+  </div>
+  <script src="../js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        isAgree: false, //单选对应布尔值
+        hobbies: [] //多选对应数组
+      }
+    })
+  </script>
+</body>
+</html>
