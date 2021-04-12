@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    app中的组件：
+    <my-cpn></my-cpn>
+
+    <my-cpn2></my-cpn2>
+    <mycpn3></mycpn3>
+    <span>==================</span>
+  </div>
+
+  <div id="app2">
+    app2中的组件：
+    <!-- 全局组件在任何已挂载的实例中都可以使用 -->
+    <!-- 但是开发中一般只有一个实例 -->
+    <my-cpn></my-cpn>
+
+    <!-- 局部组件只在局部生效 -->
+    <my-cpn2></my-cpn2>
+    <mycpn3></mycpn3>
+  </div>
+  <script src="../js/vue.js"></script>
+  <script>
+
+    const cpnC = Vue.extend({
+      template: `
+      <div>
+        <h2>hahaha</h2>
+        <h3>哈哈</h3>
+        <h3>再见</h3>
+        </div>`
+      })
+      
+      
+    // 全局组件实现方法：
+    Vue.component('my-cpn',cpnC)
+
+    const app = new Vue({
+      el: '#app',
+      components: {
+        // 局部组件实现方法：
+        // 左边有横杠需要使用字符串的形式
+        'my-cpn2': cpnC,
+        mycpn3: cpnC
+      }
+    })
+
+    const app2 = new Vue({
+      el: '#app2'
+    })
+
+    
+  </script>
+</body>
+</html>

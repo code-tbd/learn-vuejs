@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+
+  <template id="cpn">
+    <div>
+      <h2>{{message}}</h2>
+      <br>
+      <br>
+      <h2>{{warn1}}</h2>
+      <br>
+      <h2>{{warn2}}</h2>   
+    </div>
+  </template>
+
+
+  <div id="app">
+    <cpn></cpn>
+  </div>
+  <script src="../js/vue.js"></script>
+  <script>
+
+    Vue.component('cpn',{
+      template: '#cpn',
+      data() {
+        return {
+          message: '123',
+          warn1: '注意：组件中data要写在component里面',
+          warn2: '注意：组件中data必须是函数形式的'
+        }
+      },
+    })
+
+    const app = new Vue({
+      el: '#app',
+      components: {
+        // 局部中无法生效
+        // cpn2: `#cpn2`
+      }
+    })
+  </script>
+</body>
+</html>

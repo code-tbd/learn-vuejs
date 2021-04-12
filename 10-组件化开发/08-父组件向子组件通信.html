@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<template id="cpn">
+  <div>
+    <ul>
+      <li v-for="item in callmessage">{{item}}</li>
+    </ul>
+    <!-- {{typeof callmessage}} -->
+    {{callmessage}}
+    <br>
+    {{callname}}
+  </div>
+</template>
+
+  <div id="app">
+    <!-- 自定义标签的属性在props里面设置 -->
+    <!-- 在自定义标签属性里通过v-bind传入父组件部分data -->
+    <cpn  :callname="name" :callmessage="message"></cpn>
+  </div>
+  <script src="../js/vue.js"></script>
+  <script>
+
+    // 子组件
+    const cpn = {
+      template: '#cpn',
+      // 父组件向子组件传递值
+      // 通过props
+
+      // (1)props数组形式
+      // props:['callmessage','callname']
+
+      // (2)props对象形式
+      props: {
+        // 1.类型限制
+        // 类型不符合时能运行，但会报错
+        // 可以自定义类型
+        // callmessage: Array,
+        // callname: String
+
+        callmessage: {
+          type: Array,
+          // 2.默认值
+          // 当属性未接受到值时，为默认值
+          // 类型是数组或者对象时，默认值必须是一个函数
+          // 这种写法是无效的：default: [5,5,5],
+          default() {
+            return [5,5,5]
+          },
+
+          // 3.必需属性
+          // 必须传入该属性,否则报错
+          required: true
+        },
+        callname: {
+          // 类型可传多个
+          type: [Number, String]
+        }
+      }
+    }
+
+
+    // 父组件
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: [1,2,3],
+        name: 'WhiteStar'
+      },
+      components: {
+        cpn
+      }
+    })
+  </script>
+</body>
+</html>

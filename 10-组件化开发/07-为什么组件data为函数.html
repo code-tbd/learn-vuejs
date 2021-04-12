@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <template id="cpn">
+    <div>
+      <h2>计数器：{{counter}}</h2>
+      <button @click="increment">+</button>
+      <button @click="decrement">-</button>
+    </div>
+  </template>
+
+  <div id="app">
+    <cpn></cpn>
+    <cpn></cpn>
+    <cpn></cpn>
+  </div>
+  <script src="../js/vue.js"></script>
+  <script>
+
+    const obj = {counter:0}
+
+    Vue.component('cpn',{
+      template: '#cpn',
+      // 模版里data使用函数的原因是：
+      // 模版复用的时候，他们的数据是不互通的，通过函数可以给他们各自独立的data空间
+      data() {
+        // 这句代码是使得组件复用时的数据互通，注意上面定义了一个obj
+        // return obj
+
+        // 以下是常规用法
+        return {
+          counter: 0
+        }
+      },
+      methods: {
+        increment() {
+          this.counter++
+        },
+        decrement() {
+          this.counter--
+        }
+      },
+    })
+
+    const app = new Vue({
+      el: '#app'
+    })
+  </script>
+</body>
+</html>

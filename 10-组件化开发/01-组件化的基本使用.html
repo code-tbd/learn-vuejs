@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <mycpn></mycpn>
+    <mycpn></mycpn>
+    <mycpn></mycpn>
+    <my-cpn></my-cpn>
+    <my-cpn></my-cpn>
+    <my-cpn></my-cpn>
+
+  </div>
+  <script src="../js/vue.js"></script>
+  <script>
+    // 1.创建组件构造器
+    // 使用Vue.extend创建一个组件
+    const cpn = Vue.extend({
+      // template必须使用一个div包裹所有内容
+      template: `
+      <div>
+      <h2>hahaha</h2>
+      <h3>哈哈</h3>
+      <h3>再见</h3>
+      </div>`
+    })
+
+    // 2.注册组件
+    // component("标签名",组件)
+    Vue.component('my-cpn',cpn)
+
+    // 3.绑定元素
+    const app = new Vue({
+      el: '#app'
+    })
+  </script>
+</body>
+</html>

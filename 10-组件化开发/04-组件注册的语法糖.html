@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <cpn></cpn>
+    <cpn2></cpn2>
+  </div>
+  <script src="../js/vue.js"></script>
+  <script>
+    // 全局组件的语法糖
+    Vue.component('cpn',{
+      template: `<div>
+      <div>=============</div>
+      <div>我是全局的语法糖</div>
+      <div>我是全局的语法糖</div>
+      <div>=============</div>
+      </div>
+      `
+    })
+
+
+
+    const app = new Vue({
+      el: '#app',
+      components: {
+        cpn2: {
+          // 局部组件的语法糖
+          // 省略了调用Vue.extend的步骤
+          template: `<div>
+          <div>=============</div>
+          <div>我是局部的语法糖</div>
+          <div>我是局部的语法糖</div>
+          <div>=============</div>
+          </div>
+          `
+        }
+      }
+    })
+  </script>
+</body>
+</html>
