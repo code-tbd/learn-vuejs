@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <template id="cpn">
+    <div>
+      <!-- slot:插槽 -->
+      <slot name="left">
+        <span>左边</span>
+      </slot>
+      <slot>
+        <span>中间</span>
+      </slot>
+      <slot name="right">
+        <span>右边</span>
+      </slot>
+    </div>
+  </template>
+
+
+  <div id="app">
+    <cpn>
+      <template v-slot:left>
+        <button>左边</button>
+      </template>
+      <!-- default指不具名的插槽 -->
+      <!-- 这里的default也可以省略 -->
+      <!-- <template v-slot:default>
+        <input type="text">
+      </template> -->
+      <input type="text">
+      <!-- v-slot只能在template标签使用 -->
+      <!-- 除非组件只有默认插槽时，可以直接写在组件标签上 -->
+      <!-- <span v-slot:right>haha</span> -->
+      <template v-slot:right>
+        <button>右边</button>
+      </template>
+    </cpn>
+
+
+  </div>
+  <script src="../js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      components: {
+        cpn: {
+          template: '#cpn'
+        }
+      }
+    })
+  </script>
+</body>
+</html>

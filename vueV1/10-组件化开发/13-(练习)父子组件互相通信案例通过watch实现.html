@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 子组件模版 -->
+  <template id="son">
+    <div>
+      <h2>sonNum1:{{sonNum1}}</h2>
+      <h2>dataSonNum1:{{dataSonNum1}}</h2>
+      <input type="text" v-model="dataSonNum1">
+      <h2>sonNum2:{{sonNum2}}</h2>
+      <h2>dataSonNum2:{{dataSonNum2}}</h2>
+      <input type="text" v-model="dataSonNum2">
+    </div>
+  </template>
+
+
+  <!-- 父组件模版 -->
+  <div id="app">
+    <son 
+    @num1-emit="num1Change" @num2-emit="num2Change"
+    :son-num1="fatherNum1" :son-num2="fatherNum2">
+  </div>
+  <script src="../js/vue.js"></script>
+  <script>
+    // 子组件
+    const son = {
+      template: '#son',
+      props: {
+        sonNum1: Number,
+        sonNum2: Number
+      },
+      data() {
+        return {
+          dataSonNum1: this.sonNum1,
+          dataSonNum2: this.sonNum2
+        }
+      },
+      // watch用于监听数据的改变
+      watch: {
+        // 函数名要和监听数据同名
+        dataSonNum1(newValue) {
+          this.dataSonNum2 = newValue * 100;
+          this.$emit('num1-emit',newValue)
+        },
+        dataSonNum2(newValue) {
+          this.dataSonNum1 = newValue / 100;
+          this.$emit('num2-emit',newValue)
+        }
+      }
+    }
+
+    const app = new Vue({
+      el: '#app',
+      data: {
+        fatherNum1: 100,
+        fatherNum2: 200
+      },
+      components: {
+        son
+      },
+      methods: {
+        num1Change(value) {
+          this.fatherNum1 = value * 1
+        },
+        num2Change(value) {
+          this.fatherNum2 = value * 1
+        },
+      },
+    })
+  </script>
+</body>
+</html>

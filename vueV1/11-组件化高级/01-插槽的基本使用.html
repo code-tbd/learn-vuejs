@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <template id="cpn">
+    <div>
+      <h3>=============</h3>
+      <h3>我下面是个插槽</h3>
+      <slot>
+        <!-- 插槽内可以添加默认内容 -->
+        <p>我是默认内容</p>
+      </slot>
+      <h3>=============</h3>
+    </div>
+  </template>
+
+  <div id="app">
+    <cpn>
+      <button>haha</button>
+    </cpn>
+    <br>
+    <cpn>
+      <h4>nihao</h4>
+    </cpn>
+    <br>
+    <cpn>
+      <input type="text">
+    </cpn>
+    <br>
+    <!-- 插槽里不插入任何标签时会使用默认内容 -->
+    <cpn></cpn>
+    <br>
+    <cpn></cpn>
+    <br>
+    <cpn></cpn>
+    <br>
+    <!-- 只有一个插槽时，所有写在组件里的内容都会被插入 -->
+    <cpn>
+      <p>内容1</p>
+      <p>内容2</p>
+      <p>内容3</p>
+    </cpn>
+    <br>
+  </div>
+  <script src="../js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      components: {
+        cpn: {
+          template: '#cpn'
+        }
+      }
+    })
+  </script>
+</body>
+</html>

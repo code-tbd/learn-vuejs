@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 组件模版 -->
+  <template id="cpn">
+    <div>
+      <!-- 在插槽标签里绑定自定义属性和对应内容 -->
+      <slot :lanl="languageList" :luckynum="luckyNum">
+        <ul>
+          <li v-for="lan in languageList">{{lan}}</li>
+        </ul>
+      </slot>
+    </div>
+  </template>
+
+
+  <!-- 实例模版 -->
+  <div id="app">
+    <cpn></cpn>
+
+    <cpn>
+      <!-- 实现在实例模版中使用组件作用域的数据 -->
+      <!-- v-slot:default = 插槽总的一个属性 -->
+      <!-- 通过 slotProps.属性名 的形式来获取插槽属性的值 -->
+
+      <!-- <template v-slot:default="slotProps"> -->
+      <!-- v-slot的语法糖写法 -->
+      <template #default="slotProps">
+        <ul>
+          <!-- [].join('str') -->
+          <!-- 次方法实现用str分割数组,str默认值为逗号 -->
+          <!-- <span v-for="lan in slotProps.lanl">{{lan}}</span> -->
+          <span>{{slotProps.lanl.join(' - ')}}</span>
+        </ul>
+        <h2>{{slotProps.luckynum}}</h2>
+      </template>
+    </cpn>
+  </div>
+  
+  <script src="../js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        
+      },
+      components: {
+        cpn: {
+          template: '#cpn',
+          data() {
+            return {
+              // 组件里的数据
+              languageList: ['JAVA','C','C++','Go','Python'],
+              luckyNum: 88
+            }
+          },
+        }
+      }
+    })
+  </script>
+</body>
+</html>

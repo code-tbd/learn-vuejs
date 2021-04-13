@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <template id="son">
+    <div>
+      
+    </div>
+  </template>
+
+  <div id="app">
+    <son ref="son2"></son>
+    <son></son>
+    <!-- 在需要访问的子组件标签添加ref属性 -->
+    <!-- 属性值为引用名称 -->
+    <son ref="son1"></son>
+    <son></son>
+    <button @click="useChildren">通过$children访问</button>
+    <br>
+    <br>
+    <button @click="useRefs">通过$refs访问</button>
+  </div>
+  <script src="../js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: '你好'
+      },
+      methods: {
+        useChildren() {
+          // 1.使用$children访问子组件
+          // 不推荐使用，当父组件中子组件发生变化时，索引也会发生变化
+          // ¥children默认为一个数组对象
+          console.log(this.$children);
+
+          // 通过$children访问子组件的数据
+          console.log('this.$children[0].sonMessage: ', this.$children[0].sonMessage);
+
+          // 通过$children调用子组件的方法
+          this.$children[0].log()
+        },
+        useRefs() {
+          // 2.使用$refs访问子组件
+          // $refs默认为一个空对象
+          // 通过在标签里添加ref属性将子组件装入$refs
+          console.log(this.$refs);
+
+          // 通过$refs访问子组件的数据
+          // 通过.引用名来获取需要用到的子组件
+          console.log('this.$refs.son1.sonMessage: ', this.$refs.son1.sonMessage);
+
+          // 通过$refs调用子组件的方法
+          this.$refs.son1.log()
+        }
+      },
+      components: {
+        son: {
+          data() {
+            return {
+              sonMessage: '我是儿子'
+            }
+          },
+          template: '#son',
+          methods: {
+            log() {
+              console.log(this.sonMessage);
+            }
+          },
+        }
+      }
+    })
+  </script>
+</body>
+</html>

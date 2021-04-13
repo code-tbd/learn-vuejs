@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <template id="son">
+    <div>
+      <h2>sonNum: {{sonNum}}</h2>
+      <h2>dataSonNum: {{dataSonNum}}</h2>
+      <input type="text" v-model="dataSonNum" @input="numChange">
+    </div>
+  </template>
+
+  <div id="app">
+    <h2>fatherNum: {{fatherNum}}</h2>
+    <son @get-son-num="flashNum" :son-num="fatherNum"></son>
+  </div>
+  <script src="../js/vue.js"></script>
+  <script>
+    const son = {
+      template: '#son',
+      props: {
+        sonNum: Number
+      },
+      data() {
+        return {
+          dataSonNum: this.sonNum
+        }
+      },
+      methods: {
+        numChange(e) {
+          this.$emit('get-son-num',e.target.value)
+        }
+      },
+    }
+
+    const app = new Vue({
+      el: '#app',
+      data: {
+        fatherNum: 100
+      },
+      components: {
+        son
+      },
+      methods: {
+        flashNum(value) {
+          this.fatherNum = value * 1
+        }
+      },
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 组件模版 -->
+  <template id="cpn">
+    <div>
+      <h2>哈哈哈哈</h2>
+      <!-- 在组件模版里获取到的是组件里的值 -->
+      <h2>{{isShow}}</h2>
+    </div>
+  </template>
+
+
+  <!-- 实例模版 -->
+  <div id="app">
+    <!-- 在哪个模版里使用实例或者组件中的数据，作用域就在该组件 -->
+    <cpn v-show="isShow"></cpn>
+  </div>
+  
+  <script src="../js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: '你好',
+        isShow: true
+      },
+      components: {
+        cpn: {
+          template: '#cpn',
+          data() {
+            return {
+              isShow: false
+            }
+          },
+        }
+      }
+    })
+  </script>
+</body>
+</html>

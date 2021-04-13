@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <template id="son">
+    <div>
+      <button @click="useParent">通过$parent访问</button>
+      <br>
+      <br>
+      <br>
+      <button @click="useRoot">通过$root访问</button>
+    </div>
+  </template>
+
+  <div id="app">
+    <son></son>
+  </div>
+  <script src="../js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        fatherMessage: '我是爸爸'
+      },
+      methods: {
+        log() {
+          console.log(this.fatherMessage);
+        }
+      },
+      components: {
+        son: {
+          template: '#son',
+          methods: {
+            useParent() {
+              // 1.通过$parent访问父组件
+              // 使用$parent会破坏子组件的复用性
+              // 开发中使较少
+              console.log(this.$parent);
+
+              // 通过$parent访问父组件数据
+              console.log('this.$parent.fatherMessage: ', this.$parent.fatherMessage);
+
+              // 通过$parent调用父组件方法
+              this.$parent.log()
+            },
+            useRoot() {
+              // 2.通过$root访问Vue实例
+              // 这里父组件等于Vue实例
+              // 开发中使用较少
+              console.log(this.$root)
+            }
+          },
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
