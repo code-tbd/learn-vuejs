@@ -11,14 +11,36 @@ module.exports = {
   module: {
     rules: [
       {
+        // css的webpack配置
+
         test: /\.css$/,
-        // 用下面这种方式使用loader顺序为从右向左
+        // 使用loader顺序为从右向左
         // use: ['style-loader', 'css-loader']
 
         // css-loader 负责将css进行加载
         // style-loader 负责将样式添加到DOM
+        // 写成对象形式可以添加其他设置
         use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
       },
+      {
+        // less的webpack配置
+
+        test: /\.less$/i,
+        use: [{loader: 'style-loader'},{loader: 'css-loader'},{loader: 'less-loader'}]
+      },
+      {
+        // 图片的webpack配置
+
+        test: /\.(png|jpg|gif)$/i,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192,
+            },
+          },
+        ],
+      },
     ]
-  }
+  },
 }
