@@ -224,7 +224,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(8);
+var	fixUrls = __webpack_require__(9);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -562,52 +562,79 @@ function updateLink (link, options, obj) {
 
 /***/ }),
 /* 2 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__js_info__ = __webpack_require__(11);
-// commonJS导入
-const {sum,mul} = __webpack_require__(3)
-// 导入css
-__webpack_require__(4)
-// 导入less
-__webpack_require__(9)
 
-console.log(sum(1,2));
-console.log(mul(2,3));
+
+var _info = __webpack_require__(3);
+
+var info = _interopRequireWildcard(_info);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+// commonJS导入
+var _require = __webpack_require__(4),
+    sum = _require.sum,
+    mul = _require.mul;
+// 导入css
+
+
+__webpack_require__(5);
+// 导入less
+__webpack_require__(10);
+
+console.log(sum(1, 2));
+console.log(mul(2, 3));
 
 // ES6导入
 
-console.log(__WEBPACK_IMPORTED_MODULE_0__js_info__["c" /* name */]);
-console.log(__WEBPACK_IMPORTED_MODULE_0__js_info__["b" /* height */]);
-console.log(__WEBPACK_IMPORTED_MODULE_0__js_info__["a" /* age */]);
+console.log(info.name);
+console.log(info.height);
+console.log(info.age);
 
-document.writeln('<span>你好</span>')
+document.writeln('<span>你好</span>');
 
 /***/ }),
 /* 3 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-function sum(num1, num2) {
-  return num1 + num2
-}
+"use strict";
 
-function mul(num1, num2) {
-  return num1 * num2
-}
 
-module.exports = {
-  sum,
-  mul
-}
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var name = exports.name = 'haha';
+var height = exports.height = 188;
+var age = exports.age = 18;
 
 /***/ }),
 /* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
 
-var content = __webpack_require__(5);
+
+function sum(num1, num2) {
+  return num1 + num2;
+}
+
+function mul(num1, num2) {
+  return num1 * num2;
+}
+
+module.exports = {
+  sum: sum,
+  mul: mul
+};
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(6);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -653,13 +680,13 @@ if(false) {
 }
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)(false);
 // Imports
-var urlEscape = __webpack_require__(6);
-var ___CSS_LOADER_URL___0___ = urlEscape(__webpack_require__(7));
+var urlEscape = __webpack_require__(7);
+var ___CSS_LOADER_URL___0___ = urlEscape(__webpack_require__(8));
 
 // Module
 exports.push([module.i, "body {\n  /* background-color: cadetblue; */\n  /* background: url('../img/small.jpg'); */\n  background: url(" + ___CSS_LOADER_URL___0___ + ");\n}", ""]);
@@ -667,7 +694,7 @@ exports.push([module.i, "body {\n  /* background-color: cadetblue; */\n  /* back
 
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -693,13 +720,13 @@ module.exports = function escape(url) {
 };
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "img/big.6e8df768.jpeg";
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports) {
 
 
@@ -794,11 +821,11 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(10);
+var content = __webpack_require__(11);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -844,7 +871,7 @@ if(false) {
 }
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)(false);
@@ -852,18 +879,6 @@ exports = module.exports = __webpack_require__(0)(false);
 exports.push([module.i, "span {\n  font-size: 50px;\n  color: yellow;\n}\n", ""]);
 
 
-
-/***/ }),
-/* 11 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return name; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return height; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return age; });
-let name = 'haha'
-let height = 188
-let age = 18
 
 /***/ })
 /******/ ]);

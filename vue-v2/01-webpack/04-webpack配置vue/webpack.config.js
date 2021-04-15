@@ -63,4 +63,12 @@ module.exports = {
       }
     ]
   },
+  resolve: {
+    // alias: 别名
+    alias: {
+      // 在项目中直接使用vue无法解析templat
+      // 若要直接使用进行如下配置
+      'vue$': 'vue/dist/vue.esm.js'
+    }
+  }
 }
