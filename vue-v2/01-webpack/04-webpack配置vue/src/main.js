@@ -6,7 +6,8 @@ require('./style/normal.css')
 require('./style/special.less')
 // 导入Vue
 import Vue from 'vue'
-import APP from './vue/app'
+// import APP from './vue/app'
+import APP from './vue/app.vue'
 
 console.log(sum(1,2));
 console.log(mul(2,3));
@@ -17,7 +18,7 @@ console.log(info.name);
 console.log(info.height);
 console.log(info.age);
 
-document.writeln('<span>你好</span>')
+// document.writeln('<span>你好</span>')
 
 
 

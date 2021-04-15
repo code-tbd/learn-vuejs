@@ -60,6 +60,12 @@ module.exports = {
             presets: ['es2015']
           }
         }
+      },
+      {
+        test: /\.vue$/,
+        use: {
+          loader: 'vue-loader'
+        }
       }
     ]
   },
@@ -69,6 +75,9 @@ module.exports = {
       // 在项目中直接使用vue无法解析templat
       // 若要直接使用进行如下配置
       'vue$': 'vue/dist/vue.esm.js'
-    }
+    },
+
+    // 设置路径可省略的后缀名
+    extensions: ['.js','.css','.vue']
   }
 }
