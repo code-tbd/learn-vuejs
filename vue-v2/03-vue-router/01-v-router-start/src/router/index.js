@@ -8,8 +8,10 @@ Vue.use(VueRouter)
 // 创建routes对象
 const routes = [
   {
+    // 配置路径
     path: '/',
     name: 'Home',
+    // 映射组件
     component: Home
   },
   {
