@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .title {
+      text-align: center;
+      margin-top: 60px;
+      font-size: 33px;
+    }
+
+    .info {
+      width: 800px;
+      border: 1px solid black;
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0;
+      margin: 0 auto;
+    }
+
+    .main {
+      width: 800px;
+      height: 500px;
+      border: 1px solid black;
+      margin: 0 auto;
+      margin-top: 10px;
+    }
+
+    h3 {
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    .chart {
+      width: 500px;
+      height: 300px;
+      margin: 0 auto;
+    }
+
+    .main span {
+      margin-left: 100px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <h2 class="title">个性化心率区间分类</h2>
+
+    <div class="info">
+      <div class="name">
+        <span>姓名</span>
+        <input type="text" v-model="submitedName">
+      </div>
+      <div class="age">
+        <span>年龄</span>
+        <input type="text" v-model="submitedAge">
+      </div>
+      <div class="gender">
+        <span>性别</span>
+        <input type="text" v-model="submitedGender">
+      </div>
+      <div class="submit">
+        <button @click="btnClick">确定</button>
+      </div>
+    </div>
+
+    <div class="main">
+      <h3 v-if="submited">
+        {{name}}（{{gender}}，{{age}}）心率图
+      </h3>
+      <h3 v-else>请输入您的个人信息</h3>
+      <div class="chart" ref="chart"></div>
+      <span>建议：{{advice}}</span>
+    </div>
+
+
+  </div>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="//cdn.bootcss.com/echarts/4.2.1/echarts.simple.min.js"></script>
+  <script>
+    Vue.prototype.$echarts = echarts
+
+    const app = new Vue({
+      el: '#app',
+      data: {
+        submited: false,
+        name: '余宇澄',
+        age: 0,
+        gender: '女',
+        submitedName: '',
+        submitedAge: '',
+        submitedGender: '',
+        advice: '',
+        option: {
+          xAxis: {
+            type: 'category',
+            data: [0, 5, 10, 15, 20, 25],
+            name: '秒'
+          },
+          yAxis: {
+            type: 'value',
+            name: '跳/分钟'
+          },
+          series: [{
+            data: [],
+            type: 'line'
+          }]
+        }
+      },
+      methods: {
+        getEchartData() {
+          let chart = this.$refs.chart
+          if (chart) {
+            let myChart = this.$echarts.init(chart)
+            let option = this.option
+            myChart.setOption(option)
+          }
+        },
+        getRandom() {
+          let a = 1
+          let result = Math.floor(Math.random() * 20) + 60
+          this.option.series[0].data.push(result)
+          this.getEchartData()
+          setInterval(() => {
+            a++
+            if (a > 6) {
+              this.option.xAxis.data.shift()
+              this.option.xAxis.data.push(a * 5 - 5)
+              this.option.series[0].data.shift()
+            }
+            let result = Math.floor(Math.random() * 40) + 80
+            this.option.series[0].data.push(result)
+            this.getEchartData()
+          }, 5000)
+        },
+        btnClick() {
+          if (this.submitedName == '' || this.submitedAge == '' || this.submitedGender == '') {
+            alert('个人信息填写不完整，请重新填写')
+          } else {
+            let n = /^[\u4e00-\u9fa5]{2,5}$/.test(this.submitedName)
+            let a = /^\d{1,2}$/.test(this.submitedAge)
+            let g = /^男|女$/.test(this.submitedGender)
+            if (n && a && g) {
+              this.name = this.submitedName
+              this.age = this.submitedAge
+              this.gender = this.submitedGender
+              this.submited = true
+              this.getRandom()
+              alert('恭喜您，信息填写正确')
+              this.advice = '多喝热水'
+            } else {
+              alert('填写信息有误，请重新填写')
+            }
+          }
+        }
+      },
+      mounted() {
+        this.getEchartData()
+
+      },
+    })
+  </script>
+</body>
+
+</html>
