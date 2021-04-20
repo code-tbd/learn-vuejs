@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import User from '../views/User.vue'
+// import About from '../views/About.vue'
 
 // 通过Vue.use安装插件
 Vue.use(VueRouter)
@@ -20,7 +22,27 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
+    // component: About
+    children: [
+      {
+        path: '/',
+        name: 'Message',
+        component: () => import('../components/Message.vue')
+      },
+      {
+        path: 'news',
+        name: 'News',
+        component: () => import('../components/News.vue')
+      }
+    ]
+  },
+  {
+    path: '/user/:id',
+    name: 'User',
+    // component: () => import('../views/User.vue')
+    component: User,
+
   }
 ]
 
