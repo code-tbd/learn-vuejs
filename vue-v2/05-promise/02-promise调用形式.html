@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    new Promise((resolve,reject)=>{
+      setTimeout(() => {
+        // resolve('get')
+        reject('err')
+      }, 1000);
+    }).then(data=>{
+      // 成功和失败的处理都写在then里
+      console.log(data);
+    },data=>{
+      console.log(data);
+    })
+  </script>
+</body>
+</html>
