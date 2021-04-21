@@ -52,4 +52,12 @@ const router = new VueRouter({
   routes
 })
 
+
+// 全局导航守卫
+router.beforeEach((to,from,next)=>{
+  document.title = to.matched[0].name
+  // console.log('to: ', to);
+  next()
+})
+
 export default router

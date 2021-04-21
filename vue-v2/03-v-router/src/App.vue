@@ -2,11 +2,13 @@
   <div id="app">
     <div id="nav">
       <!-- tag 属性设置router-link 真正的标签 -->
-      <router-link to="/" tag="button" replace>Home</router-link> |
-      <!-- <router-link to="/about" replace>About</router-link> | -->
+      <router-link to="/" replace>
+        <button>Home</button>
+      </router-link> |
+      <router-link to="/about" replace>About</router-link> |
 
       <!-- to="{ path:'', query: {} }" -->
-      <router-link :to="{path:'/about',query:{name:'tbd',age:18,height:188}}" replace>About</router-link> |
+      <!-- <router-link :to="{path:'/about',query:{name:'tbd',age:18,height:188}}" replace>About</router-link> | -->
       <router-link :to="'/user/'+id" replace>User</router-link>
 <!-- 
       <button @click="btnClick1">About</button>
@@ -29,7 +31,7 @@ export default {
     btnClick1() {
       this.$router.push('/about/')
     }
-  },
+  }
 }
 </script>
 
@@ -53,5 +55,13 @@ export default {
 
 #nav a.router-link-active {
   color: #42b983;
+}
+
+ul {
+  padding-left: 0;
+}
+
+li {
+  list-style: none;
 }
 </style>
