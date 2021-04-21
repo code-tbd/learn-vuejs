@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+
+    // promise.all适用于两次请求完毕时再进行以后的处理
+    Promise.all([
+      new Promise((resolve) => {
+        setTimeout(() => {
+          resolve('result111')
+        }, 4000)
+      }),
+      new Promise((resolve) => {
+        setTimeout(() => {
+          resolve('result222')
+        }, 5000)
+      })
+    ]).then(results => {
+      console.log(results)
+    })
+  </script>
+</body>
+
+</html>
